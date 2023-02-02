@@ -1,0 +1,281 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  background: greenyellow;
+}
+
+.title {
+  margin: 0 0 20px 0;
+  font-weight: normal;
+}
+
+.btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  padding: 10px 20px;
+  border: 2px solid black;
+  border-radius: 10px;
+  transition-property: color, background;
+  transition-duration: .2s;
+  transition-timing-function: ease-in-out;
+}
+
+.btn-primary:hover {
+  color: white;
+  background: black;
+}
+
+.fixed-overlay {
+  position: fixed;
+  display: none;
+  overflow: auto;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.fixed-overlay.display {
+  display: block;
+}
+
+.modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal_container {
+  padding: 20px;
+  background-color: #fff;
+  color: #000;
+}
+
+.form {
+  display: none;
+  width: 500px;
+  padding: 40px 25px;
+  border-radius: 15px;
+  background: white;
+  opacity: 0;
+  transform: translateY(50px);
+  text-align: center;
+  transition-property: transform, opacity;
+  transition-duration: .2s;
+  transition-timing-function: ease-in-out;
+}
+
+.form.display {
+  display: block;
+}
+
+.form.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.form__input-container {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.form__input {
+  display: block;
+  width: 100%;
+  height: 54px;
+  padding-left: 18px;
+  border: 1px solid #F7F7F7;
+  border-radius: 10px;
+  font-size: 16px;
+  line-height: 2.5;
+  color: #333333;
+  background: #F7F7F7;
+  transition-property: border, background;
+  transition-duration: .2s;
+  transition-timing-function: ease-in-out;
+}
+
+.placeholder {
+  position: absolute;
+  top: 14%;
+  left: 18px;
+  z-index: 3;
+  font-size: 16px;
+  line-height: 40px;
+  color: #999999;
+  letter-spacing: 0.2px;
+  pointer-events: none;
+  transition-property: transform, color, top;
+  transition-duration: .2s;
+  transition-timing-function: ease-in-out;
+}
+
+.game {
+  display: grid;
+  align-items: center;
+  gap: 25px;
+  padding: 25px;
+}
+
+/* весь контейнер поддерживает перспективу */
+.flip-card {
+	perspective: 1000;
+  opacity: 0;
+  transform: scale(20%);
+  cursor: pointer;
+  transition-property: transform, opacity;
+  transition-duration: .3s;
+  transition-timing-function: ease-in-out;
+}
+
+.flip-card.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.flip-card.not-clickable {
+  pointer-events: none;
+}
+
+/* переверните сторону при проведении мышью */
+.flip-card.opened .flipper {
+  transform: rotateY(180deg);
+}
+
+.flip-card, .front, .back {
+	width: 220px;
+	height: 220px;
+}
+
+/* здесь находится скорость перевертывания */
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+
+	position: relative;
+}
+
+/* скройте обратную сторону во время переворота */
+.front, .back {
+	backface-visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+  border-radius: 10px;
+}
+
+/* лицевая сторона размещена над обратной */
+.front {
+	z-index: 2;
+  background: url(./img/card-shirt.jpg) center center no-repeat;
+}
+
+/* обратная, изначально скрытая сторона */
+.back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid red;
+  font-size: 75px;
+  color: red;
+  background: #feefff;
+	transform: rotateY(180deg);
+  pointer-events: none;
+}
+
+.timer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  color: white;
+  transform: translateY(-100%);
+  pointer-events: none;
+  transition-property: transform;
+  transition-duration: .2s;
+  transition-timing-function: ease-in-out;
+}
+
+.timer.visible {
+  transform: none;
+}
+
+.timer__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 145px;
+  padding: 15px 25px;
+  border-radius: 0 0 15px 15px;
+  background-color: rgba(0,0,0,0.5);
+  pointer-events: all;
+}
+
+#Layer_1 {
+  width: 30px;
+  height: 30px;
+  fill: white;
+}
+
+.timer__value {
+  font-size: 20px;
+}
+
+.result {
+  display: none;
+  width: 350px;
+  padding: 40px 25px;
+  border-radius: 15px;
+  text-align: center;
+  background: white;
+  opacity: 0;
+  transform: translateY(50px);
+  transition-property: opacity, transform;
+  transition-duration: .2s;
+  transition-timing-function: ease-in-out;
+}
+
+.result.display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.result.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.result__btn {
+  order: 1;
+}
+
+.result__icon {
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  transform: none;
+  transition-property: transform;
+  transition-duration: .3s;
+  transition-timing-function: ease-in-out;
+}
+
+.result__btn:hover + .result__icon {
+  transform: rotate(180deg);
+}
